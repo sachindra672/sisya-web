@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #ffffff; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo img {
+  height: 50px; 
+}
+
+.nav-actions ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.nav-actions ul li {
+  margin-left: 1.5rem;
+}
+
+.nav-actions ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 400;
+  transition: opacity 0.3s ease;
+}
+
+.nav-actions ul li a:hover {
+  opacity: 0.8;
+}
+
+.nav-actions ul li .try-btn {
+  background-color: #F2F4F5;
+  color: #1B9CFF;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 400;
+  transition: opacity 0.3s ease;
+}
+
+.nav-actions ul li .try-btn:hover {
+  opacity: 0.8;
+}
+
+.nav-actions ul li .ama-btn {
+  background-color: #1B9CFF;
+  color: #fff;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 400;
+  transition: opacity 0.3s ease;
+}
+
+.nav-actions ul li .ama-btn:hover {
+  opacity: 0.8;
+}
