@@ -2,18 +2,20 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SISYA</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
+    <!-- nav section -->
     <section>
         <nav>
             <div class="logo">
-                <a href="/"><img src="./assets/logo/logo.png" alt="logo"></a>
+                <a href="/"><img src="./assets/logo/logo.png" alt="logo" /></a>
             </div>
+            <!-- Desktop Navigation -->
             <div class="nav-actions">
                 <ul>
                     <li><a href="">Our Courses</a></li>
@@ -21,20 +23,94 @@
                     <li><a href="">Career</a></li>
                     <li><a href="">Contact Us</a></li>
                     <li><a href="">About Us</a></li>
-                    <li><a href=""><img src="./assets/user.svg" alt=""></a></li>
+                    <li><a href=""><img src="./assets/user.svg" alt="user icon" /></a></li>
                     <li><button class="try-btn">TRY IT NOW</button></li>
                     <li><button class="ama-btn">ASK ME ANYTHING</button></li>
                 </ul>
             </div>
+            <!-- Mobile Hamburger Icon -->
+            <div class="mobile-menu">
+                <a href=""><img src="./assets/user.svg" alt="user icon" /></a>
+                <img src="./assets/hamburger.svg" alt="hamburger icon" class="hamburger-icon" />
+            </div>
         </nav>
     </section>
+
+    <!-- Sidebar for Mobile Navigation -->
+    <div class="sidebar">
+        <ul>
+            <li><a href="">Our Courses</a></li>
+            <li><a href="">Blog</a></li>
+            <li><a href="">Career</a></li>
+            <li><a href="">Contact Us</a></li>
+            <li><a href="">About Us</a></li>
+            <li><button class="try-btn">TRY IT NOW</button></li>
+            <li><button class="ama-btn">ASK ME ANYTHING</button></li>
+        </ul>
+    </div>
+
+    <!-- crousel section -->
+    <section class="carousel-container">
+        <div class="carousel">
+            <img src="./assets/carousel/slide1.png" alt="Slide 1" />
+            <img src="./assets/carousel/slide2.png" alt="Slide 2" />
+            <img src="./assets/carousel/slide3.png" alt="Slide 3" />
+        </div>
+    </section>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <div class="text-block">
+                <h2>Affordable <span>Education</span></h2>
+                <h1>ACCESSIBLE <span>Anywhere</span></h1>
+                <h2>Available <span>24/7</span></h2>
+                <button class="cta-btn">Get Started</button>
+            </div>
+            <div class="hero-image">
+                <img src="./assets/hero/girl-image.png" alt="Hero Illustration" />
+                <!-- Floating icons -->
+                <img class="floating-icon book" src="./assets/hero/book-icon.png" alt="Book Icon" />
+                <img class="floating-icon flask" src="./assets/hero/flask-icon.png" alt="Flask Icon" />
+                <img class="floating-icon hand" src="./assets/hero/microscope-hand.png" alt="Microscope hand Icon" />
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stats-container">
+            <div class="stat-item">
+                <img src="./assets/stat/iit-nit.svg" alt="IIT/NIT Experts" />
+                <h3>98%</h3>
+                <p>IIT/NIT Experts</p>
+            </div>
+            <div class="stat-item">
+                <img src="./assets/stat/stu-exc.svg" alt="Students Excelled" />
+                <h3>30K+</h3>
+                <p>Students Excelled</p>
+            </div>
+            <div class="stat-item">
+                <img src="./assets/stat/teach-mast.svg" alt="Teaching Mastery" />
+                <h3>10+</h3>
+                <p>Teaching Mastery</p>
+            </div>
+            <div class="stat-item">
+                <img src="./assets/stat/satisfaction.svg" alt="Satisfaction Rate" />
+                <h3>100%</h3>
+                <p>Satisfaction Rate</p>
+            </div>
+        </div>
+    </section>
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/gsap.min.js"
         integrity="sha512-f6bQMg6nkSRw/xfHw5BCbISe/dJjXrVGfz9BSDwhZtiErHwk7ifbmBEtF9vFW8UNIQPhV2uEFVyI/UHob9r7Cw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/ScrollTrigger.min.js"
         integrity="sha512-AcqPGqrrAEtEwe+ADO5R8RbdFi7tuU7b/A2cJJH0Im0D18NRk5p5s4B3E5PMuO81KFw0ClN7J5SHVUJz7KOb0A=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="script.js"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>
