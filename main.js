@@ -171,19 +171,45 @@ window.addEventListener("DOMContentLoaded", () => {
 
   preloadImages();
 
- gsap.from(".stat-item", {
-   x: -300,
-   duration: 1,
-   opacity: 0,
-   stagger: 0.2,
-   ease: "power3.out",
-   scrollTrigger: {
-     trigger: ".stats-section .stats-container .stat-item",
-     scroller: "body",
-     markers:true,
-     start: "top 90%",
-     end:"top 75%",
-     scrub:3
-   },
- });
+  gsap.from(".stat-item", {
+    x: -300,
+    duration: 1,
+    opacity: 0,
+    stagger: 0.2,
+    ease: "power3.out",
+    scrollTrigger: {
+      trigger: ".stats-section .stats-container .stat-item",
+      scroller: "body",
+      markers: true,
+      start: "top 90%",
+      end: "top 75%",
+      scrub: 3,
+    },
+  });
+
+  const headers = document.querySelectorAll(".accordion-header");
+
+  headers.forEach((header) => {
+    header.addEventListener("click", () => {
+      const currentlyActive = document.querySelector(
+        ".accordion-header.active"
+      );
+      if (currentlyActive && currentlyActive !== header) {
+        currentlyActive.classList.remove("active");
+        const openContent = currentlyActive.nextElementSibling;
+        openContent.classList.remove("open");
+        openContent.style.maxHeight = null;
+      }
+
+      header.classList.toggle("active");
+      const content = header.nextElementSibling;
+      content.classList.toggle("open");
+
+      if (content.classList.contains("open")) {
+        content.style.maxHeight = content.scrollHeight + "px";
+      } else {
+        content.style.maxHeight = null;
+      }
+    });
+  });
 });
