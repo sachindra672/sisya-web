@@ -171,34 +171,42 @@ window.addEventListener("DOMContentLoaded", () => {
 
   preloadImages();
 
-  const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".hero-section .hero-content .text-block",
-      start: "top 70%",
-      end: "top 50%",
-      // markers: true,
-      scrub: 3,
-    },
+  gsap.registerPlugin(TextPlugin);
+
+  const revealLines = document.querySelectorAll(".text-block .reveal-line");
+
+  revealLines.forEach((line, index) => {
+    const fullText = line.innerHTML;
+    line.innerHTML = "&nbsp;";
+
+    const tl = gsap.timeline({ repeat: -1, repeatDelay: 1 });
+
+    tl.to(line, {
+      duration: 3,
+      text: {
+        value: fullText,
+        delimiter: "",
+      },
+      ease: "none",
+      autoAlpha: 1,
+    }).to(line, {
+      duration: 2,
+      delay: 2,
+      text: {
+        value: "",
+        delimiter: "",
+      },
+      ease: "none",
+    });
   });
 
-  tl.to(".reveal-line", {
-    y: 0,
-    opacity: 1,
-    duration: 2,
-    ease: "power4.out",
-    stagger: 0.3,
+  gsap.from(".cta-btn", {
+    opacity: 0,
+    scale: 0.85,
+    duration: 1,
+    ease: "back.out(1.7)",
+    delay: revealLines.length * 2.5,
   });
-
-  tl.from(
-    ".cta-btn",
-    {
-      scale: 0.85,
-      opacity: 0,
-      duration: 1,
-      ease: "back.out(1.7)",
-    },
-    ">0.2"
-  );
 
   gsap.from(".hero-image", {
     y: 100,
@@ -209,7 +217,6 @@ window.addEventListener("DOMContentLoaded", () => {
     scrollTrigger: {
       trigger: ".hero-section",
       start: "top 70%",
-      // markers: true,
       scrub: 3,
     },
   });
@@ -245,7 +252,7 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   // gsap.from(".feature-card", {
-  //   x: -600,
+  //   y: -600,
   //   opacity: 0,
   //   duration: 1.2,
   //   stagger: 0.2,
@@ -255,8 +262,8 @@ window.addEventListener("DOMContentLoaded", () => {
   //     start: "top 85%",
   //     end: "top 50%",
   //     toggleActions: "play none none none",
-  //     // scrub: true,
-  //     markers: true,
+  //     scrub: true,
+  //     // markers: true,
   //   },
   // });
 
@@ -352,7 +359,7 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   gsap.from(".faculty-section h2, .faculty-section .subheading", {
-    y: 50,
+    x: -1000,
     opacity: 0,
     duration: 1,
     ease: "power2.out",
@@ -360,44 +367,33 @@ window.addEventListener("DOMContentLoaded", () => {
     scrollTrigger: {
       trigger: ".faculty-section",
       start: "top 80%",
+      end: "top 80%",
       toggleActions: "play none none none",
       // markers: true,
       scrub: 3,
     },
   });
 
-  const cards = gsap.utils.toArray(".faculty-card");
-  const totalScrollWidth = () =>
-    document.querySelector(".faculty-carousel").scrollWidth - window.innerWidth;
+  const cards = document.querySelectorAll(".faculty-card");
 
-  gsap.to(".faculty-carousel", {
-    x: () => `-${totalScrollWidth()}`,
-    ease: "none",
-    scrollTrigger: {
-      id: "facultyScroll",
-      trigger: ".faculty-section",
-      start: "top top",
-      end: () => `+=${totalScrollWidth()}`,
-      pin: true,
-      scrub: true,
-      anticipatePin: 1,
-      // markers: true
-    },
-  });
-
-  // Fade in cards as they enter viewport during horizontal scroll
   cards.forEach((card) => {
-    gsap.to(card, {
-      opacity: 1,
-      y: 0,
-      duration: 0.6,
-      ease: "power2.out",
+    gsap.from(card, {
       scrollTrigger: {
         trigger: card,
-        containerAnimation: ScrollTrigger.getById("facultyScroll"),
-        start: "left center",
-        toggleActions: "play none none reverse",
+        start: "left 95%",
+        end: "left 90%",
+        scrub: true,
+        horizontal: true,
+        // markers: true,
+        scroller: ".faculty-carousel",
       },
+      x: 80,
+      scaleY: 0,
+      transformOrigin: "top center",
+      opacity: 0,
+      delay: 1,
+      duration: 2,
+      ease: "power2.out",
     });
   });
 
@@ -412,6 +408,7 @@ window.addEventListener("DOMContentLoaded", () => {
       start: "top 80%",
       end: "top 40%",
       toggleActions: "play none none none",
+      scrub: 3,
     },
   });
 
@@ -424,9 +421,182 @@ window.addEventListener("DOMContentLoaded", () => {
       trigger: ".factor-section h2",
       start: "top 90%",
       toggleActions: "play none none none",
+      scrub: 3,
     },
   });
 
+  gsap.from(".coming-next-section h2", {
+    y: 50,
+    opacity: 0,
+    duration: 1,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: ".coming-next-section",
+      start: "top 80%",
+      end: "top 60%",
+      toggleActions: "play none none none",
+      scrub: true,
+      // markers: true,
+    },
+  });
+
+  gsap.from(".coming-next-section .video-placeholder", {
+    x: -800,
+    scale: 0.5,
+    opacity: 0,
+    duration: 2,
+    ease: "back.out(1.7)",
+    scrollTrigger: {
+      trigger: ".coming-next-section",
+      start: "top 80%",
+      end: "top 60%",
+      toggleActions: "play none none none",
+      scrub: true,
+      // markers: true,
+    },
+  });
+
+  gsap.from(".testimonial-section h2, .testimonial-section p", {
+    y: 50,
+    opacity: 0,
+    duration: 1,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: ".testimonial-section",
+      start: "top 80%",
+      end: "top 60%",
+      toggleActions: "play none none none",
+      scrub: true,
+      markers: true,
+    },
+  });
+
+  // gsap.utils.toArray(".testimonial-card").forEach((card, index) => {
+  //   gsap.from(card, {
+  //     opacity: 0,
+  //     y: 50,
+  //     duration: 0.8,
+  //     delay: index * 0.1, // Stagger effect
+  //     scrollTrigger: {
+  //       trigger: card,
+  //       start: "top 90%",
+  //       toggleActions: "play none none none",
+  //     },
+  //   });
+  // });
+
+  const testimonials = document.querySelectorAll(".testimonial-card");
+
+  testimonials.forEach((testimonial) => {
+    gsap.from(testimonial, {
+      scrollTrigger: {
+        trigger: testimonial,
+        start: "left 95%",
+        end: "left 90%",
+        scrub: true,
+        horizontal: true,
+        markers: true,
+        scroller: ".testimonial-wrapper",
+      },
+      x: 80,
+      scaleY: 0,
+      transformOrigin: "bottom left",
+      opacity: 0,
+      duration: 1,
+      ease: "power2.out",
+    });
+  });
+
+  // const testimonials = document.querySelectorAll(".testimonial-card");
+
+  // testimonials.forEach((testimonial, index) => {
+  //   // Vertical scroll trigger (staggered reveal on scroll into view)
+  //   gsap.from(testimonial, {
+  //     opacity: 0,
+  //     y: 50,
+  //     duration: 0.8,
+  //     delay: index * 0.1,
+  //     scrollTrigger: {
+  //       trigger: testimonial,
+  //       start: "top 90%",
+  //       toggleActions: "play none none none",
+  //     },
+  //   });
+
+  //   // Horizontal scroll scrub animation
+  //   gsap.from(testimonial, {
+  //     scrollTrigger: {
+  //       trigger: testimonial,
+  //       start: "left 95%",
+  //       end: "left 90%",
+  //       scrub: true,
+  //       horizontal: true,
+  //       markers: true,
+  //       scroller: ".testimonial-wrapper",
+  //     },
+  //     x: 80,
+  //     scaleY: 0,
+  //     transformOrigin: "bottom left",
+  //     opacity: 0,
+  //     duration: 1,
+  //     ease: "power2.out",
+  //   });
+  // });
+
+  gsap.from(".download-app-text > *", {
+    y: 30,
+    opacity: 0,
+    duration: 1,
+    ease: "power2.out",
+    stagger: 0.2,
+    scrollTrigger: {
+      trigger: ".download-app-section",
+      start: "top 80%",
+      end: "top 85%",
+      toggleActions: "play none none none",
+      scrub: true,
+    },
+  });
+
+  gsap.from(".download-app-image img", {
+    opacity: 0,
+    scale: 0.8,
+    x: 100,
+    duration: 1.5,
+    ease: "power3.out",
+    scrollTrigger: {
+      trigger: ".download-app-section",
+      start: "top 80%",
+      toggleActions: "play none none none",
+      // scrub: true,
+    },
+    onComplete: () => {
+      gsap.set(".download-app-image img", { clearProps: "transform" });
+    },
+  });
+
+  gsap.from(".awards-title", {
+    scrollTrigger: {
+      trigger: ".awards-section",
+      start: "top 80%",
+    },
+    opacity: 0,
+    y: 50,
+    duration: 1,
+    ease: "power3.out",
+  });
+
+  gsap.from(".award", {
+    scrollTrigger: {
+      trigger: ".awards-section",
+      start: "top 80%",
+    },
+    opacity: 0,
+    y: 50,
+    duration: 1,
+    stagger: 0.2,
+    ease: "power3.out",
+  });
 
   const headers = document.querySelectorAll(".accordion-header");
 
@@ -447,7 +617,9 @@ window.addEventListener("DOMContentLoaded", () => {
       content.classList.toggle("open");
 
       if (content.classList.contains("open")) {
-        content.style.maxHeight = content.scrollHeight + "px";
+        const maxVisibleHeight = 400;
+        // content.style.maxHeight =
+          // Math.min(content.scrollHeight, maxVisibleHeight) + "px";
       } else {
         content.style.maxHeight = null;
       }
